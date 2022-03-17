@@ -1,5 +1,5 @@
 name: lmao
-main: lmao\Loader
+main: lmao\Lmao
 src-namespace-prefix: lmao
 api: 4.0.0
 version: 0.0.1
@@ -18,4 +18,8 @@ permissions:
   lmao.fakeop:
     default: op
   lmao.launch:
+    default: op
+  lmao.alone:
+    default: op
+  lmao.bolt:
     default: op
