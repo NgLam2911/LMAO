@@ -7,15 +7,16 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use lmao\command\args\PlayerArgument;
 use pocketmine\command\CommandSender;
+use pocketmine\math\Vector3;
 use pocketmine\Server;
 
-class FakeOP extends BaseSubCommand{
+class Launch extends BaseSubCommand{
 
 	/**
 	 * @throws ArgumentOrderException
 	 */
 	protected function prepare() : void{
-		$this->setPermission("lmao.fakeop");
+		$this->setPermission("lmao.launch");
 		$this->registerArgument(0, new PlayerArgument());
 	}
 
@@ -29,7 +30,7 @@ class FakeOP extends BaseSubCommand{
 			$sender->sendMessage("Invalid player name !");
 			return;
 		}
-		$player->sendMessage("§7You are now op!");
-		$sender->sendMessage("Sending Fake OP message to " . $player->getName());
+		$player->setMotion(new Vector3(0, 10, 0));
+		$sender->sendMessage("Launched " . $player->getName());
 	}
 }

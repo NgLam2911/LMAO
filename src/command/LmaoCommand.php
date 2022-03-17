@@ -6,6 +6,7 @@ namespace lmao\command;
 use CortexPE\Commando\BaseCommand;
 use lmao\command\subcmd\Burn;
 use lmao\command\subcmd\FakeOP;
+use lmao\command\subcmd\Launch;
 use pocketmine\command\CommandSender;
 
 class LmaoCommand extends BaseCommand{
@@ -14,6 +15,7 @@ class LmaoCommand extends BaseCommand{
 		$this->setPermission("lmao");
 		$this->registerSubCommand(new Burn("burn", "Burn other player"));
 		$this->registerSubCommand(new FakeOP("fakeop", "Sends an op message to the victim. They are not opped..."));
+		$this->registerSubCommand(new Launch("launch", "3... 2... 1... liftoff!"));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{

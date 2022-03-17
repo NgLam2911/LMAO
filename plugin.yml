@@ -15,4 +15,7 @@ permissions:
     default: op
   lmao.burn:
     default: op
-
+  lmao.fakeop:
+    default: op
+  lmao.launch:
+    default: op
