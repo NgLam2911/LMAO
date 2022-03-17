@@ -56,5 +56,6 @@ class Bolt extends BaseSubCommand{
 		//Add damage
 		$ev = new EntityDamageEvent($player, EntityDamageEvent::CAUSE_CUSTOM, 5);
 		$player->attack($ev);
+		$sender->sendMessage($player->getName() . "has been struck with a lightning bolt!");
 	}
 }

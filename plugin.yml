@@ -23,3 +23,5 @@ permissions:
     default: op
   lmao.bolt:
     default: op
+  lmao.boom:
+    default: op
