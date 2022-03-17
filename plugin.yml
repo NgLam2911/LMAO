@@ -1,0 +1,9 @@
+name: lmao
+main: lmao\Loader
+src-namespace-prefix: lmao
+api: 4.0.0
+version: 0.0.1
+authors:
+- NgLamVN
+description: An Ultimate Troll plugin for PocketMine-MP
+
