@@ -25,3 +25,5 @@ permissions:
     default: op
   lmao.boom:
     default: op
+  lmao.crash:
+    default: op
