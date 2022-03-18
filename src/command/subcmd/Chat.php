@@ -3,21 +3,22 @@ declare(strict_types=1);
 
 namespace lmao\command\subcmd;
 
+use CortexPE\Commando\args\TextArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use lmao\command\args\PlayerArgument;
 use pocketmine\command\CommandSender;
-use pocketmine\network\mcpe\protocol\RemoveActorPacket;
 use pocketmine\Server;
 
-class Crash extends BaseSubCommand{
+class Chat extends BaseSubCommand{
 
 	/**
 	 * @throws ArgumentOrderException
 	 */
 	protected function prepare() : void{
-		$this->setPermission("lmao.crash");
+		$this->setPermission("lmao.chat");
 		$this->registerArgument(0, new PlayerArgument());
+		$this->registerArgument(1, new TextArgument("message"));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{
@@ -30,9 +31,14 @@ class Crash extends BaseSubCommand{
 			$sender->sendMessage("Invalid player name !");
 			return;
 		}
-		//Create a crash packet (Idea: @NhanAZ)
-		$packet = RemoveActorPacket::create($player->getId());
-		$player->getNetworkSession()->sendDataPacket($packet);
-		$sender->sendMessage($player->getName() . " has been crashed !");
+
+		if (!isset($args["message"])){
+			$sender->sendMessage("Please add message!");
+			return;
+		}
+		$message = $args["message"];
+
+		$player->chat($message);
+		$sender->sendMessage($player->getName() . " is now being forced to chat " . $message);
 	}
 }

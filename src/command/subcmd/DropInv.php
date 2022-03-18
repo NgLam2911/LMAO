@@ -7,16 +7,16 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use lmao\command\args\PlayerArgument;
 use pocketmine\command\CommandSender;
-use pocketmine\network\mcpe\protocol\RemoveActorPacket;
+use pocketmine\math\Vector3;
 use pocketmine\Server;
 
-class Crash extends BaseSubCommand{
+class DropInv extends BaseSubCommand{
 
 	/**
 	 * @throws ArgumentOrderException
 	 */
 	protected function prepare() : void{
-		$this->setPermission("lmao.crash");
+		$this->setPermission("lmao.dropinv");
 		$this->registerArgument(0, new PlayerArgument());
 	}
 
@@ -30,9 +30,11 @@ class Crash extends BaseSubCommand{
 			$sender->sendMessage("Invalid player name !");
 			return;
 		}
-		//Create a crash packet (Idea: @NhanAZ)
-		$packet = RemoveActorPacket::create($player->getId());
-		$player->getNetworkSession()->sendDataPacket($packet);
-		$sender->sendMessage($player->getName() . " has been crashed !");
+
+		foreach($player->getInventory()->getContents() as $item){
+			$player->getWorld()->dropItem($player->getPosition(), $item, new Vector3(mt_rand(0, 100)/100, mt_rand(0,100)/100, mt_rand(0, 100)/100));
+		}
+		$player->getInventory()->clearAll();
+		$sender->sendMessage($player->getName() . "'s inventory has been dropped!");
 	}
 }

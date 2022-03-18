@@ -13,9 +13,8 @@ class EventListener implements Listener{
 	/**
 	 * @param PlayerJoinEvent $event
 	 * @priority HIGHEST
-	 * @handleCancelled FALSE
 	 */
-	protected function onJoin(PlayerJoinEvent $event) : void{
+	public function onJoin(PlayerJoinEvent $event) : void{
 		$player = $event->getPlayer();
 		Lmao::getInstance()->getSessionManager()->registerSession(new Session($player));
 	}
@@ -24,7 +23,7 @@ class EventListener implements Listener{
 	 * @param PlayerQuitEvent $event
 	 * @priority HIGHEST
 	 */
-	protected function onQuit(PlayerQuitEvent $event){
+	public function onQuit(PlayerQuitEvent $event){
 		$player = $event->getPlayer();
 		Lmao::getInstance()->getSessionManager()->removeSession(new Session($player));
 	}

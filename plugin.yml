@@ -27,9 +27,13 @@ permissions:
     default: op
   lmao.crash:
     default: op
-  lmao.deop:
+  lmao.fakedeop:
     default: op
   lmao.shuffle:
     default: op
   lmao.push:
+    default: op
+  lmao.dropinv:
+    default: op
+  lmao.chat:
     default: op

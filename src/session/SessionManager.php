@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace lmao\session;
 
 use pocketmine\player\Player;
+use RuntimeException;
 
 class SessionManager{
 
@@ -11,11 +12,10 @@ class SessionManager{
 	protected array $sessions = [];
 
 	public function registerSession(Session $session, bool $overwrite = false) : void{
-		if (is_null($this->getSession($session->getPlayer()) && $overwrite)){
-			$this->sessions[$session->getPlayer()->getUniqueId()->toString()] = $session;
-		} else {
-			throw new \RuntimeException("Can't overwrite existing session");
+		if (is_null($this->getSession($session->getPlayer())) && $overwrite){
+			throw new RuntimeException("Can't overwrite existing session");
 		}
+		$this->sessions[$session->getPlayer()->getUniqueId()->toString()] = $session;
 	}
 
 	public function getSession(Player $player) : ?Session{

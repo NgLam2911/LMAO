@@ -40,11 +40,13 @@ class Alone extends BaseSubCommand{
 				$onlinePlayer->hidePlayer($player);
 			}
 			$sender->sendMessage($player->getName() . " is now alone !");
+			$session->setAlone(true);
 		} else {
 			foreach(Server::getInstance()->getOnlinePlayers() as $onlinePlayer){
 				$onlinePlayer->showPlayer($player);
 			}
 			$sender->sendMessage($player->getName() . " is no longer alone !");
+			$session->setAlone(false);
 		}
 	}
 }
