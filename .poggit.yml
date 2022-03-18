@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/NgLamVN/LMAO
+build-by-default: true
+branches:
+- main
+projects:
+  LMAO:
+    path: ""
+...
