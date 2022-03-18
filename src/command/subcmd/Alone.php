@@ -30,7 +30,12 @@ class Alone extends BaseSubCommand{
 			$sender->sendMessage("Invalid player !");
 			return;
 		}
-		if (!Lmao::getInstance()->getSessionManager()->getSession($player)->isAlone()){
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			$sender->sendMessage("Can't get player session !");
+			return;
+		}
+		if (!$session->isAlone()){
 			foreach(Server::getInstance()->getOnlinePlayers() as $onlinePlayer){
 				$onlinePlayer->hidePlayer($player);
 			}

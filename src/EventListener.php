@@ -10,7 +10,6 @@ use pocketmine\event\player\PlayerQuitEvent;
 
 class EventListener implements Listener{
 
-
 	/**
 	 * @param PlayerJoinEvent $event
 	 * @priority HIGHEST

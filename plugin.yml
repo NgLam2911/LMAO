@@ -27,3 +27,9 @@ permissions:
     default: op
   lmao.crash:
     default: op
+  lmao.deop:
+    default: op
+  lmao.shuffle:
+    default: op
+  lmao.push:
+    default: op

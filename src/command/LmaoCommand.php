@@ -8,8 +8,11 @@ use lmao\command\subcmd\Alone;
 use lmao\command\subcmd\Bolt;
 use lmao\command\subcmd\Burn;
 use lmao\command\subcmd\Crash;
+use lmao\command\subcmd\FakeDeop;
 use lmao\command\subcmd\FakeOP;
 use lmao\command\subcmd\Launch;
+use lmao\command\subcmd\Push;
+use lmao\command\subcmd\Shuffle;
 use pocketmine\command\CommandSender;
 
 class LmaoCommand extends BaseCommand{
@@ -22,6 +25,9 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new Alone("alone", "Hides every player for the player!"));
 		$this->registerSubCommand(new Bolt("bolt", "The player is really feeling the wrath of the God of lightning!"));
 		$this->registerSubCommand(new Crash("crash", "Kicks player with a not so nice disconnected message"));
+		$this->registerSubCommand(new FakeDeop("fakedeop", "Sends a deop message to the player. They are not deopped..."));
+		$this->registerSubCommand(new Shuffle("shuffle", "Shuffle player inventory :>"));
+		$this->registerSubCommand(new Push("push", "An uncontrolled flight..."));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{

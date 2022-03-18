@@ -20,6 +20,7 @@ class Lmao extends PluginBase{
 	protected function onEnable() : void{
 		$this->sessionManager = new SessionManager();
 		$this->getServer()->getCommandMap()->register("lmao", new LmaoCommand($this, "lmao", "lmao command"));
+		$this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
 	}
 
 	public function getSessionManager() : SessionManager{
