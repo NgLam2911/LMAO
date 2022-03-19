@@ -11,12 +11,15 @@ use lmao\command\subcmd\Burn;
 use lmao\command\subcmd\Chat;
 use lmao\command\subcmd\Crash;
 use lmao\command\subcmd\DropInv;
+use lmao\command\subcmd\FakeBan;
 use lmao\command\subcmd\FakeDeop;
 use lmao\command\subcmd\FakeOP;
+use lmao\command\subcmd\Flip;
 use lmao\command\subcmd\Hurt;
 use lmao\command\subcmd\Launch;
 use lmao\command\subcmd\Push;
 use lmao\command\subcmd\Shuffle;
+use lmao\command\subcmd\Spin;
 use pocketmine\command\CommandSender;
 
 class LmaoCommand extends BaseCommand{
@@ -36,6 +39,9 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new Boom("boom", "Blow up the player!"));
 		$this->registerSubCommand(new DropInv("dropinv", "Drop player inventory!"));
 		$this->registerSubCommand(new Chat("chat", "Sends a chat message or run a command on behalf of the player!"));
+		$this->registerSubCommand(new FakeBan("fakeban", "Are you sure you got banned ?"));
+		$this->registerSubCommand(new Flip("flip", "Flip the player 180 degrees!"));
+		$this->registerSubCommand(new Spin("spin", "You spin me right round ..."));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{

@@ -37,3 +37,9 @@ permissions:
     default: op
   lmao.chat:
     default: op
+  lmao.fakeban:
+    default: op
+  lmao.flip:
+    default: op
+  lmao.spin:
+    default: op

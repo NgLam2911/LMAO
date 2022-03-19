@@ -7,16 +7,15 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use lmao\command\args\PlayerArgument;
 use pocketmine\command\CommandSender;
-use pocketmine\math\Vector3;
 use pocketmine\Server;
 
-class DropInv extends BaseSubCommand{
+class FakeBan extends BaseSubCommand{
 
 	/**
 	 * @throws ArgumentOrderException
 	 */
 	protected function prepare() : void{
-		$this->setPermission("lmao.dropinv");
+		$this->setPermission("lmao.fakeban");
 		$this->registerArgument(0, new PlayerArgument());
 	}
 
@@ -30,11 +29,7 @@ class DropInv extends BaseSubCommand{
 			$sender->sendMessage("Invalid player name !");
 			return;
 		}
-
-		foreach($player->getInventory()->getContents() as $item){
-			$player->getWorld()->dropItem($player->getPosition(), $item, new Vector3(mt_rand(-100, 100) / 100, mt_rand(-100, 100) / 100, mt_rand(-100, 100) / 100));
-		}
-		$player->getInventory()->clearAll();
-		$sender->sendMessage($player->getName() . "'s inventory has been dropped!");
+		$player->kick("§fBanned by admin.");
+		$sender->sendMessage($player->getName() . " has been fake banned!");
 	}
 }
