@@ -41,7 +41,7 @@ class SpamTask extends Task{
 	}
 
 	public function onRun() : void{
-		if ($this->count > $this->messages){
+		if ($this->count >= $this->messages){
 			$this->getHandler()->cancel();
 			return;
 		}
