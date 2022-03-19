@@ -20,6 +20,7 @@ use lmao\command\subcmd\Launch;
 use lmao\command\subcmd\Push;
 use lmao\command\subcmd\Shuffle;
 use lmao\command\subcmd\Spin;
+use lmao\command\subcmd\Swap;
 use pocketmine\command\CommandSender;
 
 class LmaoCommand extends BaseCommand{
@@ -42,6 +43,7 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new FakeBan("fakeban", "Are you sure you got banned ?"));
 		$this->registerSubCommand(new Flip("flip", "Flip the player 180 degrees!"));
 		$this->registerSubCommand(new Spin("spin", "You spin me right round ..."));
+		$this->registerSubCommand(new Swap("swap", "Swap postion with the player!"));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{

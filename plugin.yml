@@ -43,3 +43,7 @@ permissions:
     default: op
   lmao.spin:
     default: op
+  lmao.spam:
+    default: op
+  lmao.swap:
+    default: op
