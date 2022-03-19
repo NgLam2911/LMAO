@@ -48,6 +48,6 @@ class Spin extends BaseSubCommand{
 			$spinWay = SpinTask::SPINWAY_LEFT;
 		}
 		Lmao::getInstance()->getScheduler()->scheduleRepeatingTask(new SpinTask($player, $speed, $times, $spinWay), 1);
-		$sender->sendMessage($player->getName() . " now spinning at a speed of speed for times");
+		$sender->sendMessage($player->getName() . " now spinning at a speed of " . $speed . " for " . $times . " times");
 	}
 }
