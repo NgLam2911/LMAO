@@ -40,10 +40,9 @@ class Spin extends BaseSubCommand{
 		$speed = $args["speed"] ?? 1;
 		$times = $args["times"] ?? 1;
 		if (isset($args["spinway"])){
-			/** @phpstan-ignore-next-line */
 			$spinWay = match ($args["spinway"]) {
-				"left" => SpinTask::SPINWAY_LEFT,
-				"right" => SpinTask::SPINWAY_RIGHT
+				"right" => SpinTask::SPINWAY_RIGHT,
+				default => SpinTask::SPINWAY_LEFT //Default value
 			};
 		} else {
 			$spinWay = SpinTask::SPINWAY_LEFT;
