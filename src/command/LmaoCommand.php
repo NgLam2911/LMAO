@@ -10,6 +10,7 @@ use lmao\command\subcmd\Boom;
 use lmao\command\subcmd\Burn;
 use lmao\command\subcmd\Chat;
 use lmao\command\subcmd\Crash;
+use lmao\command\subcmd\Creeper;
 use lmao\command\subcmd\DropInv;
 use lmao\command\subcmd\FakeBan;
 use lmao\command\subcmd\FakeDeop;
@@ -46,6 +47,7 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new Spin("spin", "You spin me right round ..."));
 		$this->registerSubCommand(new Swap("swap", "Swap postion with the player!"));
 		$this->registerSubCommand(new Spam("spam", "Spam the player's chat"));
+		$this->registerSubCommand(new Creeper("creeper", "Something is behind you ???"));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{

@@ -3,23 +3,21 @@ declare(strict_types=1);
 
 namespace lmao\command\subcmd;
 
-use CortexPE\Commando\args\FloatArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use lmao\command\args\PlayerArgument;
 use pocketmine\command\CommandSender;
-use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 use pocketmine\Server;
 
-class Hurt extends BaseSubCommand{
+class Creeper extends BaseSubCommand{
 
 	/**
 	 * @throws ArgumentOrderException
 	 */
 	protected function prepare() : void{
-		$this->setPermission("lmao.burn");
+		$this->setPermission("lmao.creeper");
 		$this->registerArgument(0, new PlayerArgument());
-		$this->registerArgument(1, new FloatArgument("damage", true));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{
@@ -32,10 +30,14 @@ class Hurt extends BaseSubCommand{
 			$sender->sendMessage("Invalid player name !");
 			return;
 		}
-		$damage = $args["damage"] ?? 1;
-		$ev = new EntityDamageEvent($player, EntityDamageEvent::CAUSE_CUSTOM, $damage);
-		$player->attack($ev);
-		$sender->sendMessage($player->getName() . " is now being hurt!");
-
+		$sound = new PlaySoundPacket();
+		$sound->x = $player->getPosition()->x;
+		$sound->y = $player->getPosition()->y;
+		$sound->z = $player->getPosition()->z;
+		$sound->volume = 20;
+		$sound->pitch = 1;
+		$sound->soundName = "mob.creeper.say";
+		Server::getInstance()->broadcastPackets($player->getWorld()->getPlayers(), [$sound]);
+		$sender->sendMessage($player->getName() . " is now hearing creeper sounds!");
 	}
 }

@@ -47,3 +47,5 @@ permissions:
     default: op
   lmao.swap:
     default: op
+  lmao.creeper:
+    default: op
