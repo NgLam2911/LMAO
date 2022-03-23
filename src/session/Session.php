@@ -54,7 +54,7 @@ class Session{
 	public function isNoPick() : bool{
 		if($this->is_nopick){
 			if($this->no_pick_expire_time < time()){
-				$this->setNoPlace(false);
+				$this->setNoPick(false);
 			}
 		}
 		return $this->is_nopick;

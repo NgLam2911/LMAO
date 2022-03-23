@@ -57,6 +57,9 @@ class LmaoCommand extends BaseCommand{
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{
-		$sender->sendMessage("Usage: /lmao help");
+		$subCommands = $this->getSubCommands();
+		foreach($subCommands as $subCommand){
+			$sender->sendMessage("/lmao " . $subCommand->getName() . ": " . $subCommand->getDescription());
+		}
 	}
 }
