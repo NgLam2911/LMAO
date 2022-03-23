@@ -56,7 +56,8 @@ class SpamTask extends Task{
 	public function getSpamMessage() : string{
 		return match ($this->spam_type) {
 			self::SPAMTYPE_NORMAL => self::NORMAL_MESSAGES[array_rand(self::NORMAL_MESSAGES)],
-			self::SPAMTYPE_ENCHANTING_TABLE => self::ENCHANTING_TABLE_MESSAGES[array_rand(self::ENCHANTING_TABLE_MESSAGES)]
+			self::SPAMTYPE_ENCHANTING_TABLE => self::ENCHANTING_TABLE_MESSAGES[array_rand(self::ENCHANTING_TABLE_MESSAGES)],
+			default => ""
 		};
 	}
 }

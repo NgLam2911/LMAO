@@ -11,10 +11,12 @@ class Session{
 	protected bool $is_alone = false;
 	protected bool $is_nomine = false;
 	protected bool $is_noplace = false;
+	protected bool $is_nopick = false;
 	protected bool $is_fakelag = false;
 
 	protected int $no_mine_expire_time = 0;
 	protected int $no_place_expire_time = 0;
+	protected int $no_pick_expire_time = 0;
 	protected int $fakelag_expire_time = 0;
 
 	protected array $lagged_packets = [];
@@ -49,9 +51,18 @@ class Session{
 		return $this->is_noplace;
 	}
 
+	public function isNoPick() : bool{
+		if($this->is_nopick){
+			if($this->no_pick_expire_time < time()){
+				$this->setNoPlace(false);
+			}
+		}
+		return $this->is_nopick;
+	}
+
 	public function isFakeLag() : bool{
-		if ($this->is_fakelag){
-			if ($this->fakelag_expire_time < time()){
+		if($this->is_fakelag){
+			if($this->fakelag_expire_time < time()){
 				$this->setFakeLag(false);
 				//Send Lagged packets
 				foreach($this->getLaggedPackets() as $packet){
@@ -81,6 +92,15 @@ class Session{
 			$this->no_place_expire_time = PHP_INT_MAX;
 		}else{
 			$this->no_place_expire_time = time() + $duration;
+		}
+	}
+
+	public function setNoPick(bool $status = true, int $duration = 0) : void{
+		$this->is_nopick = $status;
+		if((time() + $duration) > PHP_INT_MAX){ //AVOID A VERY BIG NUMBER :>
+			$this->no_pick_expire_time = PHP_INT_MAX;
+		}else{
+			$this->no_pick_expire_time = time() + $duration;
 		}
 	}
 
