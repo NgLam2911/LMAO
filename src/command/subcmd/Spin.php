@@ -9,7 +9,6 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use lmao\command\args\PlayerArgument;
 use lmao\command\args\SpinDirectionArgument;
-use lmao\command\args\SpinWayArgument;
 use lmao\Lmao;
 use lmao\task\SpinTask;
 use pocketmine\command\CommandSender;
