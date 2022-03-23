@@ -74,7 +74,7 @@ class EventListener implements Listener{
 		if (!$entity instanceof Player){
 			return;
 		}
-		$session = Lmao::getInstance()->getSessionManager()->getSession();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($entity);
 		if (is_null($session)){
 			return;
 		}
