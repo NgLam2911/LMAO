@@ -53,3 +53,5 @@ permissions:
     default: op
   lmao.noplace:
     default: op
+  lmao.nopick:
+    default: op
