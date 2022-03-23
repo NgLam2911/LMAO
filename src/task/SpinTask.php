@@ -7,21 +7,21 @@ use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
 
 class SpinTask extends Task{
-	public const SPINWAY_LEFT = 0;
-	public const SPINWAY_RIGHT = 1;
+	public const SPINDIRECTION_LEFT = 0;
+	public const SPINDIRECTION_RIGHT = 1;
 
 	protected Player $player;
 	protected float $angle = 0;
 	protected float $speed;
 	protected float $baseYaw;
 	protected int $times;
-	protected int $spinWay;
+	protected int $spinDirection;
 
-	public function __construct(Player $player, float $speed = 1, int $times = 1, int $spinWay = 0){
+	public function __construct(Player $player, float $speed = 1, int $times = 1, int $spinDirection = 0){
 		$this->player = $player;
 		$this->speed = $speed;
 		$this->times = $times;
-		$this->spinWay = $spinWay;
+		$this->spinDirection = $spinDirection;
 		$this->baseYaw = $player->getLocation()->getYaw();
 	}
 
@@ -39,7 +39,7 @@ class SpinTask extends Task{
 			}
 		}
 		$this->angle += 1.8 * $this->speed;
-		if ($this->spinWay === self::SPINWAY_LEFT){
+		if ($this->spinDirection === self::SPINDIRECTION_LEFT){
 			$newYaw = -$this->angle + $this->baseYaw;
 		} else {
 			$newYaw = $this->angle + $this->baseYaw;

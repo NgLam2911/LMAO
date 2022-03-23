@@ -6,10 +6,10 @@ namespace lmao\command\args;
 use CortexPE\Commando\args\StringEnumArgument;
 use pocketmine\command\CommandSender;
 
-class SpinWayArgument extends StringEnumArgument{
+class SpinDirectionArgument extends StringEnumArgument{
 
 	public function __construct(bool $optional = false){
-		parent::__construct("spinway", $optional);
+		parent::__construct("spindirection", $optional);
 	}
 
 	public function parse(string $argument, CommandSender $sender) : string{

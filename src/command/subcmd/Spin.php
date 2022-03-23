@@ -8,6 +8,7 @@ use CortexPE\Commando\args\IntegerArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use lmao\command\args\PlayerArgument;
+use lmao\command\args\SpinDirectionArgument;
 use lmao\command\args\SpinWayArgument;
 use lmao\Lmao;
 use lmao\task\SpinTask;
@@ -24,7 +25,7 @@ class Spin extends BaseSubCommand{
 		$this->registerArgument(0, new PlayerArgument());
 		$this->registerArgument(1, new FloatArgument("speed", true));
 		$this->registerArgument(2, new IntegerArgument("times", true));
-		$this->registerArgument(3, new SpinWayArgument(true));
+		$this->registerArgument(3, new SpinDirectionArgument(true));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{
@@ -39,15 +40,15 @@ class Spin extends BaseSubCommand{
 		}
 		$speed = $args["speed"] ?? 1;
 		$times = $args["times"] ?? 1;
-		if (isset($args["spinway"])){
-			$spinWay = match ($args["spinway"]) {
-				"right" => SpinTask::SPINWAY_RIGHT,
-				default => SpinTask::SPINWAY_LEFT //Default value
+		if (isset($args["spindirection"])){
+			$spinDirection = match ($args["spindirection"]) {
+				"right" => SpinTask::SPINDIRECTION_RIGHT,
+				default => SpinTask::SPINDIRECTION_LEFT //Default value
 			};
 		} else {
-			$spinWay = SpinTask::SPINWAY_LEFT;
+			$spinDirection = SpinTask::SPINDIRECTION_LEFT;
 		}
-		Lmao::getInstance()->getScheduler()->scheduleRepeatingTask(new SpinTask($player, $speed, $times, $spinWay), 1);
+		Lmao::getInstance()->getScheduler()->scheduleRepeatingTask(new SpinTask($player, $speed, $times, $spinDirection), 1);
 		$sender->sendMessage($player->getName() . " now spinning at a speed of " . $speed . " for " . $times . " times");
 	}
 }
