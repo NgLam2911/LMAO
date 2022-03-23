@@ -49,3 +49,7 @@ permissions:
     default: op
   lmao.creeper:
     default: op
+  lmao.nomine:
+    default: op
+  lmao.noplace:
+    default: op

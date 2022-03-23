@@ -18,6 +18,8 @@ use lmao\command\subcmd\FakeOP;
 use lmao\command\subcmd\Flip;
 use lmao\command\subcmd\Hurt;
 use lmao\command\subcmd\Launch;
+use lmao\command\subcmd\NoMine;
+use lmao\command\subcmd\NoPlace;
 use lmao\command\subcmd\Push;
 use lmao\command\subcmd\Shuffle;
 use lmao\command\subcmd\Spam;
@@ -48,6 +50,8 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new Swap("swap", "Swap postion with the player!"));
 		$this->registerSubCommand(new Spam("spam", "Spam the player's chat"));
 		$this->registerSubCommand(new Creeper("creeper", "Something is behind you ???"));
+		$this->registerSubCommand(new NoMine("nomine", "Cant mine blocks ??? Maybe lag."));
+		$this->registerSubCommand(new NoPlace("noplace", "Cant place blocks ??? Maybe lag."));
 	}
 
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{
