@@ -1,6 +1,5 @@
 name: lmao
 main: lmao\Lmao
-src-namespace-prefix: lmao
 api: 4.0.0
 version: 0.0.1
 authors:
