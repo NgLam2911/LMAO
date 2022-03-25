@@ -33,18 +33,18 @@ class LmaoCommand extends BaseCommand{
 
 	protected function prepare() : void{
 		$this->setPermission("lmao");
-		$this->registerSubCommand(new Burn("burn", "Burn other player"));
-		$this->registerSubCommand(new FakeOP("fakeop", "Sends an op message to the victim. They are not opped..."));
+		$this->registerSubCommand(new Burn("burn", "Burn the player"));
+		$this->registerSubCommand(new FakeOP("fakeop", "Sends an op message to the player. They are not opped..."));
 		$this->registerSubCommand(new Launch("launch", "3... 2... 1... liftoff!"));
-		$this->registerSubCommand(new Alone("alone", "Hides every player for the player!"));
+		$this->registerSubCommand(new Alone("alone", "Hides every player, let them feed alone!"));
 		$this->registerSubCommand(new Bolt("bolt", "The player is really feeling the wrath of the God of lightning!"));
 		$this->registerSubCommand(new Crash("crash", "Kicks player with a not so nice disconnected message"));
 		$this->registerSubCommand(new FakeDeop("fakedeop", "Sends a deop message to the player. They are not deopped..."));
-		$this->registerSubCommand(new Shuffle("shuffle", "Shuffle player inventory :>"));
+		$this->registerSubCommand(new Shuffle("shuffle", "Shuffle player's inventory :>"));
 		$this->registerSubCommand(new Push("push", "An uncontrolled flight..."));
 		$this->registerSubCommand(new Hurt("hurt", "Ouch! That hurts..."));
 		$this->registerSubCommand(new Boom("boom", "Blow up the player!"));
-		$this->registerSubCommand(new DropInv("dropinv", "Drop player inventory!"));
+		$this->registerSubCommand(new DropInv("dropinv", "Drop player's inventory!"));
 		$this->registerSubCommand(new Chat("chat", "Sends a chat message or run a command on behalf of the player!"));
 		$this->registerSubCommand(new FakeBan("fakeban", "Are you sure you got banned ?"));
 		$this->registerSubCommand(new Flip("flip", "Flip the player 180 degrees!"));
@@ -57,7 +57,7 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new NoPick("nopick", "Can't pickup items ??? Maybe lag."));
 		$this->registerSubCommand(new Rickroll("rickroll", "Rolling with Rick ??? Never gonna give you up"));
 	}
-
+	
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{
 		$subCommands = $this->getSubCommands();
 		foreach($subCommands as $subCommand){
