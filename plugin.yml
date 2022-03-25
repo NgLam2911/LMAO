@@ -54,3 +54,5 @@ permissions:
     default: op
   lmao.nopick:
     default: op
+  lmao.rickroll:
+    default: op
