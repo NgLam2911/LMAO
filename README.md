@@ -1,4 +1,5 @@
 ![image](https://user-images.githubusercontent.com/33188123/158940956-9406baec-ae21-4260-be95-b799ad95c793.png)
+[![](https://poggit.pmmp.io/shield.state/lmao)](https://poggit.pmmp.io/p/lmao)
 # LMAO
 An ultimate troll plugin for PocketMine-MP
 # Feature
