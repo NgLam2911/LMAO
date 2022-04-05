@@ -1,4 +1,4 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/NgLamVN/LMAO
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/NgLam2911/LMAO
 build-by-default: true
 branches:
 - main
