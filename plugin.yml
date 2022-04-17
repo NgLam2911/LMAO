@@ -58,3 +58,5 @@ permissions:
     default: op
   lmao.pumpkinhead:
     default: op
+  lmao.starve:
+    default: op

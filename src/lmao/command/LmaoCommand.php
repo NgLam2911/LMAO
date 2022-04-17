@@ -28,6 +28,7 @@ use lmao\command\subcmd\Rickroll;
 use lmao\command\subcmd\Shuffle;
 use lmao\command\subcmd\Spam;
 use lmao\command\subcmd\Spin;
+use lmao\command\subcmd\Starve;
 use lmao\command\subcmd\Swap;
 use pocketmine\command\CommandSender;
 
@@ -59,6 +60,7 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new NoPick("nopick", "Can't pickup items ??? Maybe lag."));
 		$this->registerSubCommand(new Rickroll("rickroll", "Rolling with Rick ??? Never gonna give you up"));
 		$this->registerSubCommand(new PumpkinHead("pumpkinhead", "Just a pumpkin in ur head..."));
+		$this->registerSubCommand(new Starve("starve", "s t a r v e"));
 	}
 	
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{
