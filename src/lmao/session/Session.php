@@ -13,11 +13,13 @@ class Session{
 	protected bool $is_noplace = false;
 	protected bool $is_nopick = false;
 	protected bool $is_fakelag = false;
+	protected bool $is_infiniteDeath = false;
 
 	protected int $no_mine_expire_time = 0;
 	protected int $no_place_expire_time = 0;
 	protected int $no_pick_expire_time = 0;
 	protected int $fakelag_expire_time = 0;
+	protected int $infiniteDeath_expire_time = 0;
 
 	protected array $lagged_packets = [];
 
@@ -73,6 +75,15 @@ class Session{
 		return $this->is_fakelag;
 	}
 
+	public function isInfiniteDeath() : bool{
+		if($this->is_infiniteDeath){
+			if($this->infiniteDeath_expire_time < time()){
+				$this->setInfiniteDeath(false);
+			}
+		}
+		return $this->is_infiniteDeath;
+	}
+
 	public function setAlone(bool $status = true) : void{
 		$this->is_alone = $status;
 	}
@@ -110,6 +121,15 @@ class Session{
 			$this->fakelag_expire_time = PHP_INT_MAX;
 		}else{
 			$this->fakelag_expire_time = time() + $duration;
+		}
+	}
+
+	public function setInfiniteDeath(bool $status = true, int $duration = 0) : void{
+		$this->is_infiniteDeath = $status;
+		if((time() + $duration) > PHP_INT_MAX){ //AVOID A VERY BIG NUMBER :>
+			$this->infiniteDeath_expire_time = PHP_INT_MAX;
+		}else{
+			$this->infiniteDeath_expire_time = time() + $duration;
 		}
 	}
 

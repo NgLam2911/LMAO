@@ -10,7 +10,9 @@ use pocketmine\event\entity\EntityItemPickupEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\player\Player;
+use pocketmine\scheduler\ClosureTask;
 
 class EventListener implements Listener{
 
@@ -80,6 +82,22 @@ class EventListener implements Listener{
 		}
 		if ($session->isNoPick()){
 			$event->cancel();
+		}
+	}
+
+	/**
+	 * @param PlayerRespawnEvent $event
+	 * @priority LOW
+	 */
+	public function onRespawn(PlayerRespawnEvent $event){
+		$session = Lmao::getInstance()->getSessionManager()->getSession($event->getPlayer());
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isInfiniteDeath()){
+			Lmao::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(function() use ($session) : void {
+				$session->getPlayer()->kill();
+			}), 3);
 		}
 	}
 }

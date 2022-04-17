@@ -17,6 +17,7 @@ use lmao\command\subcmd\FakeDeop;
 use lmao\command\subcmd\FakeOP;
 use lmao\command\subcmd\Flip;
 use lmao\command\subcmd\Hurt;
+use lmao\command\subcmd\InfiniteDeath;
 use lmao\command\subcmd\Launch;
 use lmao\command\subcmd\NoMine;
 use lmao\command\subcmd\NoPick;
@@ -61,6 +62,7 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new Rickroll("rickroll", "Rolling with Rick ??? Never gonna give you up"));
 		$this->registerSubCommand(new PumpkinHead("pumpkinhead", "Just a pumpkin in ur head..."));
 		$this->registerSubCommand(new Starve("starve", "s t a r v e"));
+		$this->registerSubCommand(new InfiniteDeath("infinitedeath", "They can't respawn now ..."));
 	}
 	
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{

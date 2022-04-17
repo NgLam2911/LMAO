@@ -60,3 +60,5 @@ permissions:
     default: op
   lmao.starve:
     default: op
+  lmao.infinitedeath:
+    default: op
