@@ -12,4 +12,6 @@ projects:
         branch: PM4
       - src: thebigsmilexd/libnbs/libnbs
         version: ^4.1.0
+    lint:
+      phpstan: false
 ...
