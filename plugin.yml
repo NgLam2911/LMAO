@@ -1,7 +1,7 @@
 name: lmao
 main: lmao\Lmao
 api: 4.0.0
-version: 0.0.1
+version: 0.1.0
 authors:
   - NgLamVN
 description: An Ultimate Troll plugin for PocketMine-MP
