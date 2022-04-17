@@ -35,6 +35,15 @@ class DropInv extends BaseSubCommand{
 			$player->getWorld()->dropItem($player->getPosition(), $item, new Vector3(mt_rand(-100, 100) / 100, mt_rand(-100, 100) / 100, mt_rand(-100, 100) / 100));
 		}
 		$player->getInventory()->clearAll();
+		foreach($player->getArmorInventory()->getContents() as $item){
+			$player->getWorld()->dropItem($player->getPosition(), $item, new Vector3(mt_rand(-100, 100) / 100, mt_rand(-100, 100) / 100, mt_rand(-100, 100) / 100));
+		}
+		$player->getArmorInventory()->clearAll();
+		foreach($player->getOffHandInventory()->getContents() as $item){
+			$player->getWorld()->dropItem($player->getPosition(), $item, new Vector3(mt_rand(-100, 100) / 100, mt_rand(-100, 100) / 100, mt_rand(-100, 100) / 100));
+		}
+		$player->getOffHandInventory()->clearAll();
+
 		$sender->sendMessage($player->getName() . "'s inventory has been dropped!");
 	}
 }
