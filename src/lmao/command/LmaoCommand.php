@@ -21,6 +21,8 @@ use lmao\command\subcmd\Launch;
 use lmao\command\subcmd\NoMine;
 use lmao\command\subcmd\NoPick;
 use lmao\command\subcmd\NoPlace;
+use lmao\command\subcmd\PumkinHead;
+use lmao\command\subcmd\PumpkinHead;
 use lmao\command\subcmd\Push;
 use lmao\command\subcmd\Rickroll;
 use lmao\command\subcmd\Shuffle;
@@ -56,6 +58,7 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new NoPlace("noplace", "Can't place blocks ??? Maybe lag."));
 		$this->registerSubCommand(new NoPick("nopick", "Can't pickup items ??? Maybe lag."));
 		$this->registerSubCommand(new Rickroll("rickroll", "Rolling with Rick ??? Never gonna give you up"));
+		$this->registerSubCommand(new PumpkinHead("pumpkinhead", "Just a pumpkin in ur head..."));
 	}
 	
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{

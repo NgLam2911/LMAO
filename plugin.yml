@@ -56,3 +56,5 @@ permissions:
     default: op
   lmao.rickroll:
     default: op
+  lmao.pumpkinhead:
+    default: op
