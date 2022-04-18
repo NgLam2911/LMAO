@@ -27,3 +27,6 @@ An ultimate troll plugin for PocketMine-MP
 |NoPlace|Can't place blocks ??? Maybe lag.|
 |NoPick|Can't pickup items ??? Maybe lag.|
 |Rickroll|Rolling with Rick(let them hear a very familiar song... hehe)|
+|PumpkinHead|Put a pumpkin on player head|
+|Starve|Make them get hungry faster|
+|InfiniteDeath|They can't respawn now ...|
