@@ -9,6 +9,7 @@ use NgLam2911\lmao\command\args\PlayerArgument;
 use pocketmine\command\CommandSender;
 use pocketmine\entity\Entity;
 use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\network\mcpe\NetworkBroadcastUtils;
 use pocketmine\network\mcpe\protocol\AddActorPacket;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 use pocketmine\Server;
@@ -52,7 +53,7 @@ class Bolt extends BaseSubCommand{
 		$sound->pitch = 2;
 		$sound->soundName = "ambient.weather.thunder";
 
-		Server::getInstance()->broadcastPackets($player->getWorld()->getPlayers(), [$lightning, $sound]);
+		NetworkBroadcastUtils::broadcastPackets($player->getWorld()->getPlayers(), [$lightning, $sound]);
 		//Add damage
 		$ev = new EntityDamageEvent($player, EntityDamageEvent::CAUSE_CUSTOM, 5);
 		$player->attack($ev);

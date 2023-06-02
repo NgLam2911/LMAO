@@ -7,6 +7,7 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use NgLam2911\lmao\command\args\PlayerArgument;
 use pocketmine\command\CommandSender;
+use pocketmine\network\mcpe\NetworkBroadcastUtils;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 use pocketmine\Server;
 
@@ -37,7 +38,7 @@ class Creeper extends BaseSubCommand{
 		$sound->volume = 20;
 		$sound->pitch = 1;
 		$sound->soundName = "mob.creeper.say";
-		Server::getInstance()->broadcastPackets($player->getWorld()->getPlayers(), [$sound]);
+		NetworkBroadcastUtils::broadcastPackets($player->getWorld()->getPlayers(), [$sound]);
 		$sender->sendMessage($player->getName() . " is now hearing creeper sounds!");
 	}
 }

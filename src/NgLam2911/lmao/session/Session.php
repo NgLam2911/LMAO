@@ -14,6 +14,7 @@ class Session{
 	protected bool $is_nopick = false;
 	protected bool $is_fakelag = false;
 	protected bool $is_infiniteDeath = false;
+	protected bool $is_silentchest = false;
 
 	protected int $no_mine_expire_time = 0;
 	protected int $no_place_expire_time = 0;
@@ -75,6 +76,10 @@ class Session{
 		return $this->is_fakelag;
 	}
 
+	public function isSilentChest() : bool{
+		return $this->is_silentchest;
+	}
+
 	public function isInfiniteDeath() : bool{
 		if($this->is_infiniteDeath){
 			if($this->infiniteDeath_expire_time < time()){
@@ -131,6 +136,10 @@ class Session{
 		}else{
 			$this->infiniteDeath_expire_time = time() + $duration;
 		}
+	}
+
+	public function setSilentChest(bool $status = true) : void{
+		$this->is_silentchest = $status;
 	}
 
 	public function getLaggedPackets() : array{

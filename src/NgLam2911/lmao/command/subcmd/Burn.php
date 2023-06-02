@@ -36,6 +36,11 @@ class Burn extends BaseSubCommand{
 		} else {
 			$time = $args["seconds"];
 		}
+		if ($time < 1 || $time > 32767){
+			$sender->sendMessage("Burn time must be between 1 and 32767 seconds !");
+			return;
+		}
+
 		$player->setOnFire($time);
 		$sender->sendMessage("Burned " . $player->getName() . " for " . $time . " seconds !");
 	}

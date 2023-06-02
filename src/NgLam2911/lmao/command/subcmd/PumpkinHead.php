@@ -6,9 +6,9 @@ namespace NgLam2911\lmao\command\subcmd;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use NgLam2911\lmao\command\args\PlayerArgument;
+use pocketmine\block\VanillaBlocks;
 use pocketmine\command\CommandSender;
-use pocketmine\item\ItemFactory;
-use pocketmine\item\ItemIds;
+use pocketmine\item\VanillaItems;
 use pocketmine\Server;
 
 class PumpkinHead extends BaseSubCommand{
@@ -32,14 +32,14 @@ class PumpkinHead extends BaseSubCommand{
 		}
 		$armorinv = $player->getArmorInventory();
 		$helmet = $armorinv->getHelmet();
-		if ($helmet->getId() !== ItemIds::AIR){
+		if ($helmet->equals(VanillaItems::AIR())){
 			if ($player->getInventory()->canAddItem($armorinv->getHelmet())){
 				$player->getInventory()->addItem($helmet);
 			} else {
 				$player->getWorld()->dropItem($player->getPosition(), $helmet);
 			}
 		}
-		$armorinv->setHelmet(ItemFactory::getInstance()->get(ItemIds::PUMPKIN, 0));
+		$armorinv->setHelmet(VanillaBlocks::CARVED_PUMPKIN()->asItem());
 		$sender->sendMessage($player->getName() . " now had a pumpkin head!");
 	}
 }

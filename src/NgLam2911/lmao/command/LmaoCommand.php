@@ -69,5 +69,6 @@ class LmaoCommand extends BaseCommand{
 		foreach($subCommands as $subCommand){
 			$sender->sendMessage("/lmao " . $subCommand->getName() . ": " . $subCommand->getDescription());
 		}
+		$sender->sendMessage("LMAO v0.2.0");
 	}
 }

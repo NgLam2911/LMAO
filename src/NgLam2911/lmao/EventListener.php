@@ -4,10 +4,12 @@ declare(strict_types=1);
 namespace NgLam2911\lmao;
 
 use NgLam2911\lmao\session\Session;
+use pocketmine\block\tile\Chest as ChestTile;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\entity\EntityItemPickupEvent;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
@@ -55,7 +57,7 @@ class EventListener implements Listener{
 	 * @priority LOW
 	 * @handleCancelled FALSE
 	 */
-	public function onPlace(BlockPlaceEvent $event){
+	public function onPlace(BlockPlaceEvent $event) : void{
 		$player = $event->getPlayer();
 		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
 		if (is_null($session)){
@@ -71,7 +73,7 @@ class EventListener implements Listener{
 	 * @priority LOW
 	 * @handleCancelled FALSE
 	 */
-	public function onPickup(EntityItemPickupEvent $event){
+	public function onPickup(EntityItemPickupEvent $event) : void{
 		$entity = $event->getEntity();
 		if (!$entity instanceof Player){
 			return;
@@ -89,7 +91,7 @@ class EventListener implements Listener{
 	 * @param PlayerRespawnEvent $event
 	 * @priority LOW
 	 */
-	public function onRespawn(PlayerRespawnEvent $event){
+	public function onRespawn(PlayerRespawnEvent $event) : void{
 		$session = Lmao::getInstance()->getSessionManager()->getSession($event->getPlayer());
 		if (is_null($session)){
 			return;
