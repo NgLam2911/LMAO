@@ -7,10 +7,10 @@ projects:
     path: ""
     icon: "icon.png"
     libs:
-      - src: JinodkDevTeam/Commando/Commando
-        version: ^3.2.0
-      - src: thebigsmilexd/libnbs/libnbs
-        version: ^4.1.0
+      - src: ACM-PocketMine-MP/Commando/Commando
+        version: ^3.2.1
+      - src: inxomnyaa/libnbs/libnbs
+        version: ^4.2.2
     lint:
       phpstan: false
 ...

@@ -12,8 +12,8 @@ use NgLam2911\lmao\task\PlaySongTask;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
-use xenialdan\libnbs\NBSFile;
-use xenialdan\libnbs\Song;
+use inxomnyaa\libnbs\NBSFile;
+use inxomnyaa\libnbs\Song;
 
 class Lmao extends PluginBase{
 	use SingletonTrait;
@@ -28,13 +28,7 @@ class Lmao extends PluginBase{
 
 	protected function onEnable() : void{
 		$this->saveResource("Rickroll.nbs");
-		try{
-			if(!PacketHooker::isRegistered()){
-				PacketHooker::register($this);
-			}
-		}catch(HookAlreadyRegistered){
-			//NOOP
-		}
+		
 		$this->sessionManager = new SessionManager();
 		$this->getServer()->getCommandMap()->register("lmao", new LmaoCommand($this, "lmao", "lmao command"));
 		$this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);

@@ -6,8 +6,10 @@ namespace NgLam2911\lmao\task;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
-use xenialdan\libnbs\NBSFile;
-use xenialdan\libnbs\Song;
+use inxomnyaa\libnbs\NBSFile;
+use inxomnyaa\libnbs\Song;
+use inxomnyaa\libnbs\Note;
+use inxomnyaa\libnbs\Layer;
 
 class PlaySongTask extends Task{
 
@@ -46,9 +48,9 @@ class PlaySongTask extends Task{
 			if (is_null($note)){
 				continue;
 			}
-			$volume = ($layer->getVolume() * 50) / 10000;
+			$sound = NBSFile::mapping($note->getInstrument());
 			$pitch = 2 ** (($note->getKey() - 45) / 12);
-			$sound = NBSFile::MAPPING[$note->instrument] ?? NBSFile::MAPPING[NBSFile::INSTRUMENT_PIANO];
+			$volume = 1.0; // Default volume, adjust as needed
 			//Create play sound packet
 			$packet = new PlaySoundPacket();
 			$packet->soundName = $sound;
