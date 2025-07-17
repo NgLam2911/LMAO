@@ -13,12 +13,15 @@ class Session{
 	protected bool $is_noplace = false;
 	protected bool $is_nopick = false;
 	protected bool $is_fakelag = false;
+	protected bool $is_frozen = false;
+
 	protected bool $is_infiniteDeath = false;
 	protected bool $is_silentchest = false;
 
 	protected int $no_mine_expire_time = 0;
 	protected int $no_place_expire_time = 0;
 	protected int $no_pick_expire_time = 0;
+	protected int $freeze_expire_time = 0;
 	protected int $fakelag_expire_time = 0;
 	protected int $infiniteDeath_expire_time = 0;
 
@@ -74,6 +77,24 @@ class Session{
 			}
 		}
 		return $this->is_fakelag;
+	}
+
+	public function isFrozen() : bool{
+		if($this->is_frozen){
+			if($this->freeze_expire_time < time()){
+				$this->setFreeze(false);
+			}
+		}
+		return $this->is_frozen;
+	}
+
+	public function setFreeze(bool $status = true, int $duration = 0) : void{
+		$this->is_frozen = $status;
+		if((time() + $duration) > PHP_INT_MAX){ //AVOID A VERY BIG NUMBER :>
+			$this->freeze_expire_time = PHP_INT_MAX;
+		}else{
+			$this->freeze_expire_time = time() + $duration;
+		}
 	}
 
 	public function isSilentChest() : bool{

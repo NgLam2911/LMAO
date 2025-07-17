@@ -16,6 +16,8 @@ use NgLam2911\lmao\command\subcmd\FakeBan;
 use NgLam2911\lmao\command\subcmd\FakeDeop;
 use NgLam2911\lmao\command\subcmd\FakeOP;
 use NgLam2911\lmao\command\subcmd\Flip;
+use NgLam2911\lmao\command\subcmd\Freeze;
+use NgLam2911\lmao\command\subcmd\Help;
 use NgLam2911\lmao\command\subcmd\Hurt;
 use NgLam2911\lmao\command\subcmd\InfiniteDeath;
 use NgLam2911\lmao\command\subcmd\Launch;
@@ -30,6 +32,7 @@ use NgLam2911\lmao\command\subcmd\Spam;
 use NgLam2911\lmao\command\subcmd\Spin;
 use NgLam2911\lmao\command\subcmd\Starve;
 use NgLam2911\lmao\command\subcmd\Swap;
+use NgLam2911\lmao\Lmao;
 use pocketmine\command\CommandSender;
 
 class LmaoCommand extends BaseCommand{
@@ -43,6 +46,7 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new Bolt("bolt", "The player is really feeling the wrath of the God of lightning!"));
 		$this->registerSubCommand(new Crash("crash", "Kicks player with a not so nice disconnected message"));
 		$this->registerSubCommand(new FakeDeop("fakedeop", "Sends a deop message to the player. They are not deopped..."));
+		$this->registerSubCommand(new Help("help", "Shows the list of commands"));
 		$this->registerSubCommand(new Shuffle("shuffle", "Shuffle player's inventory :>"));
 		$this->registerSubCommand(new Push("push", "An uncontrolled flight..."));
 		$this->registerSubCommand(new Hurt("hurt", "Ouch! That hurts..."));
@@ -51,6 +55,7 @@ class LmaoCommand extends BaseCommand{
 		$this->registerSubCommand(new Chat("chat", "Sends a chat message or run a command on behalf of the player!"));
 		$this->registerSubCommand(new FakeBan("fakeban", "Are you sure you got banned ?"));
 		$this->registerSubCommand(new Flip("flip", "Flip the player 180 degrees!"));
+		$this->registerSubCommand(new Freeze("freeze", "Freeze the player for a certain amount of time."));
 		$this->registerSubCommand(new Spin("spin", "You spin me right round ..."));
 		$this->registerSubCommand(new Swap("swap", "Swap postion with the player!"));
 		$this->registerSubCommand(new Spam("spam", "Spam the player's chat"));
@@ -65,10 +70,6 @@ class LmaoCommand extends BaseCommand{
 	}
 	
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void{
-		$subCommands = $this->getSubCommands();
-		foreach($subCommands as $subCommand){
-			$sender->sendMessage("/lmao " . $subCommand->getName() . ": " . $subCommand->getDescription());
-		}
-		$sender->sendMessage("LMAO v0.2.0");
+		$sender->sendMessage("§cUsage: §4/lmao help §cto see the list of commands.");
 	}
 }

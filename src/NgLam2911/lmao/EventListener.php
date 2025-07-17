@@ -9,10 +9,17 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\entity\EntityItemPickupEvent;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\player\PlayerItemHeldEvent;
+use pocketmine\event\player\PlayerItemUseEvent;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
+use pocketmine\event\player\PlayerToggleFlightEvent;
+use pocketmine\event\player\PlayerToggleSneakEvent;
+use pocketmine\event\player\PlayerToggleSprintEvent;
 use pocketmine\player\Player;
 use pocketmine\scheduler\ClosureTask;
 
@@ -50,6 +57,9 @@ class EventListener implements Listener{
 		if ($session->isNoMine()){
 			$event->cancel();
 		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
 	}
 
 	/**
@@ -64,6 +74,9 @@ class EventListener implements Listener{
 			return;
 		}
 		if ($session->isNoPlace()){
+			$event->cancel();
+		}
+		if ($session->isFrozen()){
 			$event->cancel();
 		}
 	}
@@ -85,6 +98,9 @@ class EventListener implements Listener{
 		if ($session->isNoPick()){
 			$event->cancel();
 		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
 	}
 
 	/**
@@ -100,6 +116,134 @@ class EventListener implements Listener{
 			Lmao::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(function() use ($session) : void {
 				$session->getPlayer()->kill();
 			}), 3);
+		}
+	}
+
+	/**
+	 * @param PlayerMoveEvent $event
+	 * @priority HIGHEST
+	 * @handleCancelled FALSE
+	 */
+	public function onMove(PlayerMoveEvent $event) : void{
+		$player = $event->getPlayer();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
+	}
+
+	/**
+	 * @param PlayerInteractEvent $event
+	 * @priority HIGHEST
+	 * @handleCancelled FALSE
+	 */
+	public function onInteract(PlayerInteractEvent $event) : void{
+		$player = $event->getPlayer();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
+	}
+
+	/**
+	 * @param PlayerDropItemEvent $event
+	 * @priority HIGHEST
+	 * @handleCancelled FALSE
+	 */
+	public function onDropItem(PlayerDropItemEvent $event) : void{
+		$player = $event->getPlayer();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
+	}
+
+	/**
+	 * @param PlayerItemUseEvent $event
+	 * @priority HIGHEST
+	 * @handleCancelled FALSE
+	 */
+	public function onItemUse(PlayerItemUseEvent $event) : void{
+		$player = $event->getPlayer();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
+	}
+
+	/**
+	 * @param PlayerItemHeldEvent $event
+	 * @priority HIGHEST
+	 * @handleCancelled FALSE
+	 */
+	public function onItemHeld(PlayerItemHeldEvent $event) : void{
+		$player = $event->getPlayer();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
+	}
+
+	/**
+	 * @param PlayerToggleSneakEvent $event
+	 * @priority HIGHEST
+	 * @handleCancelled FALSE
+	 */
+	public function onToggleSneak(PlayerToggleSneakEvent $event) : void{
+		$player = $event->getPlayer();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
+	}
+
+	/**
+	 * @param PlayerToggleSprintEvent $event
+	 * @priority HIGHEST
+	 * @handleCancelled FALSE
+	 */
+	public function onToggleSprint(PlayerToggleSprintEvent $event) : void{
+		$player = $event->getPlayer();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isFrozen()){
+			$event->cancel();
+		}
+	}
+
+	/**
+	 * @param PlayerToggleFlightEvent $event
+	 * @priority HIGHEST
+	 * @handleCancelled FALSE
+	 */
+	public function onToggleFlight(PlayerToggleFlightEvent $event) : void{
+		$player = $event->getPlayer();
+		$session = Lmao::getInstance()->getSessionManager()->getSession($player);
+		if (is_null($session)){
+			return;
+		}
+		if ($session->isFrozen()){
+			$event->cancel();
 		}
 	}
 }
