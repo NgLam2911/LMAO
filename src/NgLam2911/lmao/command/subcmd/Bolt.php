@@ -12,6 +12,7 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\network\mcpe\NetworkBroadcastUtils;
 use pocketmine\network\mcpe\protocol\AddActorPacket;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
+use pocketmine\network\mcpe\protocol\types\entity\PropertySyncData;
 use pocketmine\Server;
 
 class Bolt extends BaseSubCommand{
@@ -39,8 +40,9 @@ class Bolt extends BaseSubCommand{
 		$lightning = new AddActorPacket();
 		$lightning->type = "minecraft:lightning_bolt";
 		$lightning->actorRuntimeId = $id;
-		$lightning->actorUniqueId = $id; //???
+		$lightning->actorUniqueId = $id;
 		$lightning->metadata = [];
+		$lightning->syncedProperties = new PropertySyncData([], []);
 		$lightning->position = $player->getPosition();
 		$lightning->yaw = 0;
 		$lightning->pitch = 0;
@@ -57,6 +59,6 @@ class Bolt extends BaseSubCommand{
 		//Add damage
 		$ev = new EntityDamageEvent($player, EntityDamageEvent::CAUSE_CUSTOM, 5);
 		$player->attack($ev);
-		$sender->sendMessage($player->getName() . "has been struck with a lightning bolt!");
+		$sender->sendMessage($player->getName() . " has been struck with a lightning bolt!");
 	}
 }

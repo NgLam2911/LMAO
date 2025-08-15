@@ -1,17 +1,21 @@
 name: lmao
 main: NgLam2911\lmao\Lmao
-api: 5.3.0
-version: 0.2.1
+api: 5.30.0
+version: 0.2.3
 authors:
   - NgLamVN
+  - HBIDamian
 description: An Ultimate Troll plugin for PocketMine-MP
 
 virions:
   - Commando
+  - libnbs
 
 permissions:
   lmao:
     default: op
+  lmao.help:
+    default: true
   lmao.burn:
     default: op
   lmao.fakeop:
@@ -39,6 +43,8 @@ permissions:
   lmao.fakeban:
     default: op
   lmao.flip:
+    default: op
+  lmao.freeze:
     default: op
   lmao.spin:
     default: op
